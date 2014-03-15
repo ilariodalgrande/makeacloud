@@ -78,7 +78,7 @@
 		}
 		}
 	%>
-	<form action="/sign" method="post">
+	<form action="/makeacloud" method="post">
 		<div>
 			<textarea name="content" rows="3" cols="60"></textarea>
 		</div>

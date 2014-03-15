@@ -16,7 +16,9 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
 public class MakeacloudServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
