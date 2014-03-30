@@ -45,6 +45,7 @@ public class MakeacloudServlet extends HttpServlet {
 		greeting.setProperty("date", date);
 		greeting.setProperty("content", content);
 		
+		
 		// Ottenimento dell'oggetto per accedere al Datastore
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		// Inserimento della nuova entity nel Datastore
