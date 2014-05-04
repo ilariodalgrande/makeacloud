@@ -38,7 +38,7 @@ public class House {
 	private String dispatcherHub = "localhost:8080";
 	
 	// Identificativi univici dei proprietari sul DS
-	private List<Long> ownersId;
+	private List<Long> owners;
 	
 //	@Load
 //	private List<Ref<Device>> devices;
@@ -46,14 +46,14 @@ public class House {
 	// in modo da forzarne il caricamento ogni volta per avere sempre
 	// lo stato corrente
 	@Getter
-	private Map<String, Long> devicesId;
+	private Map<String, Long> devices;
 	
 	/* ******************************************************************/
 	public House(String name, String description) {
 		this.name = name;
 		this.description = description;
-		this.ownersId = new ArrayList<Long>();
-		this.devicesId = new Hashtable<String, Long>();
+		this.owners = new ArrayList<Long>();
+		this.devices = new Hashtable<String, Long>();
 		// Salvataggio su DS ed assegnazione della chiave univoca
 		save();
 	}
@@ -64,7 +64,7 @@ public class House {
 	
 	/* ******************************************************************/
 	public void addOwner(Long ownerId) {
-		ownersId.add(ownerId);
+		owners.add(ownerId);
 		// Salvataggio su DS
 		save();
 	}
@@ -74,7 +74,7 @@ public class House {
 	}
 	
 	public void addDevice(String deviceName, Long deviceId) {
-		devicesId.put(deviceName, deviceId);
+		devices.put(deviceName, deviceId);
 		// Salvataggio su DS
 		save();
 	}

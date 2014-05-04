@@ -232,7 +232,7 @@
           "dispatcherHub" : {
             "type" : "string"
           },
-          "devicesId" : {
+          "devices" : {
             "$ref" : "JsonMap"
           }
         }
