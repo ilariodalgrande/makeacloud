@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Hello MakeACoffee!</title>
+	<script async src="/js/base.js"></script>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
+	<style>
+	body {
+		padding-top: 40px;
+		padding-bottom: 40px;
+		background-color: #f5f5f5;
+	}
+	
+	blockquote {
+		margin-bottom: 10px;
+		border-left-color: #bbb;
+	}
+	
+	form {
+		margin-top: 10px;
+	}
+	
+	form label {
+		width: 90px;
+		display: inline-block;
+	}
+	
+	.form-signin input[type="text"] {
+		font-size: 16px;
+		height: auto;
+		margin-bottom: 15px;
+		padding: 7px 9px;
+	}
+	
+	.row {
+		margin-left: 0px;
+		margin-top: 10px;
+		overflow: scroll;
+	}
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"	data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Hello MakeACoffee!</a>
+				<div class="nav-collapse collapse pull-right">
+					<a href="javascript:void(0);" class="btn" id="signinButton">Sign in</a>
+				</div>			
+			</div>
+		</div>
+	</div>
+	
+ 	<!-- Il form per passare i dati all'api -->
+	<div class="container">
+
+	<!--
+		Sezione dove vengono scritti i dati dall'api
+		Come se fosse una lavagna
+	-->
+     <output id="userHouseDevice"></output>
+    <output id="currentStateP"></output>
+
+	<!-- Vari form html per richiamare le api -->
+<!--    <form onsubmit="return false;">
+        <h2>Get User</h2>
+        <div><label for="id">User ID:</label><input id="id" /></div>
+        <div><input id="getUser" type="submit" class="btn btn-small" value="Submit"></div>
+    </form> -->
+
+    <form onsubmit="return false;">
+        <h2>Fire event</h2>
+        <div><input id="device" type="hidden" /></div>
+        <div><label for="event">Event:</label><input id="event" /></div>
+        <div><input id="fireEvent" type="submit" class="btn btn-small" value="Submit"></div>
+    </form>
+<p>
+		<div id="root_panel">
+			<table>
+				<tr>
+					<td>
+						<div class="panel panel-info" style="width: 250px;">
+							<div class="panel-heading text-center">Welcome</div>
+							<div class="panel-body" style="height: 300px;">
+								<form class="form-horizontal" role="form" onsubmit="return false;">
+								  <div class="form-group">
+									<label for="id" class="col-sm-2 control-label"><span class="glyphicon glyphicon-user"></span></label>
+									<div class="col-sm-10">
+									  <input class="form-control" id="id" placeholder="Email">
+									</div>
+								  </div>
+								  <div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></span></label>
+									<div class="col-sm-10">
+									  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+									</div>
+								  </div>
+								  <div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+									  <div class="checkbox">
+										<label>
+										  <input type="checkbox"> Remember me
+										</label>
+									  </div>
+									</div>
+								  </div>
+								  <div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+									  <button id="getUser" type="submit" class="btn btn-default">Sign in</button>
+									</div>
+								  </div>
+								</form>
+							</div>
+							<div class="panel-footer">Panel footer</div>
+						</div>
+					</td>
+					<td>
+						<div class="panel panel-info" style="width: 250px;">
+							<div class="panel-heading text-center">
+								<span class="glyphicon glyphicon-off pull-left"></span>
+								MakeACoffee
+								<span class="glyphicon glyphicon-cog pull-right"></span>
+							</div>
+							<div class="panel-body text-center" style="height: 150px">
+								<img src="..." alt="..." class="img-thumbnail"><br>
+								<b id="userName"></b><br>
+								<i id="userEmail"></i>
+							</div>
+							<!-- Lista delle opzioni -->
+							<div class="list-group" style="height: 150px;" id="housesList">
+							</div>
+							<div class="panel-footer">
+							Footer - tbd
+							</div> <!-- /panel-footer -->
+						</div>
+					</td>
+					<td>
+						<div class="panel panel-info" style="width: 250px;">
+							<div class="panel-heading text-center">
+								<span class="glyphicon glyphicon-chevron-left pull-left"></span>
+								Device
+								<span class="glyphicon glyphicon-refresh pull-right"></span>
+							</div>
+							<div class="panel-body text-center" style="height: 150px">
+								Lista dei dispositivi
+							</div>
+							<!-- Lista delle opzioni -->
+							<div class="list-group" style="height: 150px;" id="devicesList">
+							</div>
+							<div class="panel-footer">
+							Footer - tbd
+							</div> <!-- /panel-footer -->
+						</div>
+					</td>
+					<td>
+						<div class="panel panel-info" style="width: 250px;">
+							<div class="panel-heading text-center">
+								<span class="glyphicon glyphicon-chevron-left pull-left"></span>
+								<span id="deviceName">&nbsp;</span>
+								<span class="glyphicon glyphicon-refresh pull-right"></span>
+							</div>
+							<div class="panel-body text-center" style="height: 150px">
+								<img src="..." alt="..." class="img-thumbnail"><br>
+								<b id="currentState"></b>
+							</div>
+							<!-- Lista delle opzioni -->
+							<div class="list-group" style="height: 150px;" id="eventsList">
+							</div>
+							<div class="panel-footer">
+							Footer - tbd
+							</div> <!-- /panel-footer -->
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div> <!-- /root_panel -->
+	<!--
+    <form onsubmit="return false;">
+        <h2>Get Greeting</h2>
+        <div><label for="id">Greeting ID:</label><input id="id" /></div>
+        <div><input id="getGreeting" type="submit" class="btn btn-small" value="Submit"></div>
+    </form>
+
+    <form onsubmit="return false;">
+        <h2>List Greetings</h2>
+        <div><input id="listGreeting" type="submit" class="btn btn-small" value="Submit"></div>
+    </form>
+
+	<form onsubmit="return false;">
+	    <h2>Multiply Greetings</h2>
+	    <div><label for="greeting">Greeting:</label><input id="greeting" /></div>
+	    <div><label for="count">Count:</label><input id="count" /></div>
+	    <div><input id="multiplyGreetings" type="submit" class="btn btn-small" value="Submit"></div>
+	</form>
+-->
+<!-- 	<form onsubmit="return false;">
+	    <h2>Authenticated Greeting</h2>
+	    <div><input id="authedGreeting" type="submit" class="btn btn-small" disabled value="Submit"></div>
+	</form>
+ -->
+
+	<!--
+		Al caricamento della pagina html, verra' eseguita la funzione "init"
+		Viene utilizzata per caricare le api, altrimenti non si potrebbero
+		utilizzare nell'app js/html.
+	-->
+	<script>
+	    function init() {
+	        google.appengine.samples.hello.init('//' + window.location.host + '/_ah/api');
+	        // makeacoffee.cloud.api.init('//' + window.location.host + '/_ah/api');
+	    }
+	</script>
+	<!--
+		NB: non e' importante il nome "init" ma deve essere uguale al nome
+		della funzione sopra definita.
+	-->
+	<script src="https://apis.google.com/js/client.js?onload=init"></script>
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/prototype.js" type="text/javascript"></script>
+	<script src="js/scriptaculous.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
