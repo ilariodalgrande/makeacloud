@@ -129,10 +129,14 @@ public class MakeACoffeeService {
 		Device device = getDevice(deviceId);
 		// Caricamento della casa relativa al device
 		House house = getHouse(device.getHouseId());
-		// Ottenimento del corretto Dispatcher Hub Manager
-		DispatcherHubManager dhm = DispatcherHubFactory.getInstance().createManager(house.getDispatcherHub());
-		// Lancio dell'evento verso il dispatcher hub
-		dhm.fireEvent(deviceId, eventId);
+		
+		// Invocazione sul DispatcherHub solo per eventi GAE-->DH
+		if (!eventId.equals("OK") && !eventId.equals("KO")) {
+			// Ottenimento del corretto Dispatcher Hub Manager
+			DispatcherHubManager dhm = DispatcherHubFactory.getInstance().createManager(house.getDispatcherHub());
+			// Lancio dell'evento verso il dispatcher hub
+			dhm.fireEvent(deviceId, eventId);
+		}
 		
 		// Esecuzione dell'evento sullo stato corrente del device
 		// NB: lo stato su DS cambia automaticamente

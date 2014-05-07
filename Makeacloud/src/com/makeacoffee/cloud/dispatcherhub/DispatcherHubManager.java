@@ -1,5 +1,15 @@
 package com.makeacoffee.cloud.dispatcherhub;
 
+import java.net.URI;
+
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+
 public class DispatcherHubManager {
 	/** <p>String di connessione al Dispatcher Hub.</p> */
 	private String url;
@@ -28,6 +38,11 @@ public class DispatcherHubManager {
 				+ "] dell'evento [" + eventId
 				+ "] sul dispositivo [" + deviceId
 				+ "]");
+		ClientConfig config = new DefaultClientConfig();
+		Client client = Client.create(config);
+		URI baseURI = UriBuilder.fromUri("http://localhost:18080/HelloWebServices").build();
+		WebResource service = client.resource(baseURI);
+		System.out.println(service.path("dh").path("ed").path(deviceId.toString()).path(eventId).accept(MediaType.APPLICATION_JSON).get(String.class));
 	}
 
 	/* ***********************************************************************/
