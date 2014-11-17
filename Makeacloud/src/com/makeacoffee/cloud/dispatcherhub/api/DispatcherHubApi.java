@@ -14,7 +14,7 @@ public class DispatcherHubApi {
 	@GET
 	@Path("/{device}/{event}")
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public String notifyEvent(@PathParam("device") Long deviceId, @PathParam("event") String eventId) {
+	public String notifyEvent(@PathParam("device") String deviceId, @PathParam("event") String eventId) {
 		System.out.println("Notifica dal dispatcherhub del risultato di un'azione");
 		System.out.println("Device da aggiornare: " + deviceId);
 		System.out.println("Evento invocato sul device: " + eventId);

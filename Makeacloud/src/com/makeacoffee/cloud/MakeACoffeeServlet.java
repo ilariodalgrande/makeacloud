@@ -24,22 +24,22 @@ public class MakeACoffeeServlet extends HttpServlet {
 		User user = new User("diego.braga86@gmail.com");
 
 		// Creazione di una nuova casa
-		House h1 = new House("Casa di Milano");
-		House h2 = new House("Casa di Verona");
+		House h1 = new House("0013A200408BB15A", "Casa di Milano");
+		//House h2 = new House("Casa di Verona");
 		
 		// Associazione della nuova casa all'utente e viceversa
 		user.addHouse(h1);
-		user.addHouse(h2);
+		//user.addHouse(h2);
 		h1.addOwner(user);
-		h2.addOwner(user);
+		//h2.addOwner(user);
 
 		// Creazione di nuovi dispositivi
-		Device d1 = AliciaFactory.createDevice(h1.getId(), "Alicia");
-		Device d2 = BoilerFactory.createDevice(h2.getId(), "Boiler");
+		Device d1 = AliciaFactory.createDevice(h1.getId(), "0013A200408bb14C", "Alicia");
+		//Device d2 = BoilerFactory.createDevice(h2.getId(), "Boiler");
 		
 		// Associazione dell'Alicia alla casa
 		h1.addDevice(d1);
-		h2.addDevice(d2);
+		//h2.addDevice(d2);
 
 		// Pagina
 		resp.setContentType("text/plain");
@@ -48,8 +48,8 @@ public class MakeACoffeeServlet extends HttpServlet {
 		pw.println("User:   " + user);
 		pw.println("House:  " + h1);
 		pw.println("Device: " + d1);
-		pw.println("House:  " + h2);
-		pw.println("Device: " + d2);
+		//pw.println("House:  " + h2);
+		//pw.println("Device: " + d2);
 	}
 	
 

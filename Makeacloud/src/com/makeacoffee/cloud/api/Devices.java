@@ -20,7 +20,7 @@ public class Devices {
 	@ApiMethod(name = "devices.get",
 			path = "devices/{id}",
 			httpMethod = HttpMethod.GET)
-	public Device getDevice(@Named("id") Long id) {
+	public Device getDevice(@Named("id") String id) {
 		System.out.println("Device da caricare: " + id);
 
 		Device d = MakeACoffeeService.getDevice(id);
@@ -33,7 +33,7 @@ public class Devices {
 	@ApiMethod(name = "devices.fire",
 			path = "devices/{device}/events/{event}",
 			httpMethod = HttpMethod.POST)
-	public State fireEvent(@Named("device") Long deviceId,
+	public State fireEvent(@Named("device") String deviceId,
 			@Named("event") String eventId) {
 		State toState = MakeACoffeeService.fireEvent(deviceId, eventId);
 

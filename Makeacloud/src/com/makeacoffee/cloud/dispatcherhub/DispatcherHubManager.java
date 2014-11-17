@@ -28,7 +28,7 @@ public class DispatcherHubManager {
 	 * @param deviceId identificativo del device.
 	 * @param eventId identificativo dell'evento.
 	 */
-	public void fireEvent(Long deviceId, String eventId) {
+	public void fireEvent(String deviceId, String eventId) {
 		// TODO: da implementare
 		// Connessione verso il DH
 		connect();

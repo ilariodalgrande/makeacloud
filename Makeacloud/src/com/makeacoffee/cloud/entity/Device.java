@@ -18,8 +18,9 @@ import com.googlecode.objectify.annotation.Id;
 public class Device {
 	@Id
 	@Getter @Setter
-	// Chiave interna al DS
-	private Long id;
+	// Chiave univoca del dispositivo
+	// Rappresenta il codice seriale del nodo ZigBee
+	private String id;
 	@Getter @Setter
 	private String name;// TODO: serial number? per ora "alicia-1234567890"
 	@Getter @Setter
@@ -29,15 +30,16 @@ public class Device {
 	/**
 	 * Identificativo univoco della casa dove si trova attualmente il dispositivo.
 	 */
-	private Long houseId;
+	private String houseId;
 
 	private String currentStateId;
 
 	private Map<String, State> states;
 
 	/* ******************************************************************/
-	public Device(Long houseId, String name, String initialStateId) {
+	public Device(String houseId, String id, String name, String initialStateId) {
 		this.houseId = houseId;
+		this.id = id;
 		this.name = name;
 		this.description = new String();
 		this.states = new Hashtable<String, State>();
@@ -46,8 +48,8 @@ public class Device {
 		save();
 	}
 	
-	public Device(House house, String name, String initialStateId) {
-		this(house.getId(), name, initialStateId);
+	public Device(House house, String deviceId, String name, String initialStateId) {
+		this(house.getId(), deviceId, name, initialStateId);
 	}
 	
 	/* ******************************************************************/

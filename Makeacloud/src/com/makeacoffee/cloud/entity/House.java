@@ -24,9 +24,10 @@ public class House {
 	@Getter @Setter
 	/**
 	 * Identificativo univoco della casa.
-	 * Generato automaticamente dal DS al salvataggio.
+	 * Rappresenta il codice seriale del nodo <i>coordinator</i> della rete
+	 * <b>ZigBee</b>.
 	 */
-	private Long id;
+	private String id;
 	
 	@Getter @Setter
 	private String name;
@@ -46,20 +47,21 @@ public class House {
 	// in modo da forzarne il caricamento ogni volta per avere sempre
 	// lo stato corrente
 	@Getter
-	private Map<String, Long> devices;
+	private Map<String, String> devices;
 	
 	/* ******************************************************************/
-	public House(String name, String description) {
+	public House(String id, String name, String description) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.owners = new ArrayList<Long>();
-		this.devices = new Hashtable<String, Long>();
+		this.devices = new Hashtable<String, String>();
 		// Salvataggio su DS ed assegnazione della chiave univoca
 		save();
 	}
 	
-	public House(String name) {
-		this(name, null);
+	public House(String id, String name) {
+		this(id, name, null);
 	}
 	
 	/* ******************************************************************/
@@ -73,7 +75,7 @@ public class House {
 		addOwner(owner.getId());
 	}
 	
-	public void addDevice(String deviceName, Long deviceId) {
+	public void addDevice(String deviceName, String deviceId) {
 		devices.put(deviceName, deviceId);
 		// Salvataggio su DS
 		save();

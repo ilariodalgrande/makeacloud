@@ -21,7 +21,7 @@ public class Houses {
 	@ApiMethod(name = "houses.get",
 			path = "houses/{id}",
 			httpMethod = HttpMethod.GET)
-	public House getHouse(@Named("id") Long id) {
+	public House getHouse(@Named("id") String id) {
 		System.out.println("Casa da caricare: " + id);
 
 		House h = MakeACoffeeService.getHouse(id);

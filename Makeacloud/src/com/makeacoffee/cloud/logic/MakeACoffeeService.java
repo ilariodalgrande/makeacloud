@@ -86,7 +86,7 @@ public class MakeACoffeeService {
 	 * @param houseId identificativo univoco della casa.
 	 * @return
 	 */
-	public static House getHouse(Long houseId) {
+	public static House getHouse(String houseId) {
 		// Oggetto contenente i dettagli della casa caricata da DS
 		House house = null;
 		
@@ -104,7 +104,7 @@ public class MakeACoffeeService {
 	 * @param deviceId identificativo univoco del device.
 	 * @return
 	 */
-	public static Device getDevice(Long deviceId) {
+	public static Device getDevice(String deviceId) {
 		// Oggetto contenente i dettagli del device caricato da DS
 		Device device = null;
 		
@@ -121,7 +121,7 @@ public class MakeACoffeeService {
 	 * 
 	 * @return l'oggetto rappresentante il nuovo stato.
 	 */
-	public static State fireEvent(Long deviceId, String eventId) {
+	public static State fireEvent(String deviceId, String eventId) {
 		// Per cercare di aggiustare il bug del mancato caricamento
 		// del corretto device, ripulisco la cache
 		ofy().clear();

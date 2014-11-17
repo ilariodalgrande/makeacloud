@@ -5,9 +5,9 @@ import com.makeacoffee.cloud.entity.Device;
 public class BoilerFactory {
 	// TODO: generalizzarla
 
-	public static Device createDevice(Long houseId, String name) {
+	public static Device createDevice(String houseId, String name) {
 		// Creazione e salvataggio del nuovo dispositivo
-		Device device = new Device(houseId, name, "Spento");
+		Device device = new Device(houseId, null, name, "Spento");
 
 		// Creazione e salvataggio delle transazioni
 		device.addTransaction("Spento", "Accendi", "Acceso");

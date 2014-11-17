@@ -34,18 +34,18 @@ public class User {
 	@Getter
 	// Lista delle case possedute
 	// E' una associazione tra l'id della casa su DS e il nome della casa
-	private Map<String, Long> houses;
+	private Map<String, String> houses;
 
 	/* ******************************************************************/
 	public User(String email) {
 		this.email = email;
 		//TODO: attualmente tutti sono amministratori
-		this.houses = new Hashtable<String, Long>();
+		this.houses = new Hashtable<String, String>();
 		save();
 	}
 	
 	/* ******************************************************************/
-	public void addHouse(String houseName, Long houseId) {
+	public void addHouse(String houseName, String houseId) {
 		houses.put(houseName, houseId);
 		// Salvataggio dell'utente su DS
 		save();
